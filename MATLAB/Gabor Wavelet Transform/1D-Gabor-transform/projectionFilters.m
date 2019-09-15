@@ -1,13 +1,9 @@
 function  [P1, P2]  =  projectionFilters(M, alpha, tau)
-%
-% projects the signal onto the two 'matched' approximtion spaces.
-% note that M must be odd.
-%
+
 shift = 1/2;
 h     = 1/(M - 1);
 mid   = (M + 1)/2;
 
-% symmetric frequency (center at the origin)
 nu    = zeros(1, M);
 for k = 1 : (M-1)/2
     nu(1, mid+k) =  k * h;
@@ -25,7 +21,6 @@ P2 = zeros(1, M);
 P1(mid) = 1;
 P2(mid) = 1;
 
-% sample the continuous filter (defined on the real line)
 for k = 1 : M
     if k == mid
         continue;
@@ -37,7 +32,6 @@ for k = 1 : M
     end
 end
 
-% move the center frequency to one end (Matlab convention)
 P1 = conj( ifftshift(P1) );
 P2 = conj( ifftshift(P2) );
 
