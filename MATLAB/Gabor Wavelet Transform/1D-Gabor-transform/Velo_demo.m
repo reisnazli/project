@@ -1,38 +1,4 @@
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Analysis and reconstruction of 1-dimensional signals in a multiresolution
-% framework using Gabor-like wavelets.
-%
-% Version: April 20, 2008
-% Author : K.N. Chaudhury
-%
-% References:
-%
-% [1] K.N. Chaudhury and M. Unser, Construction of Hilbert transform pairs 
-% of wavelet bases and Gabor-like transforms, IEEE Transactions on Signal 
-% Processing, vol. 57, no. 9, pp. 3411-3425, 2009.
-%
-% [2] K.N. Chaudhury, Optimally Localized Wavelets and Smoothing Kernels,
-% Swiss Federal Institute of Technology Lausanne, EPFL, Thesis no. 4968.
-%
-%
-% Notations:
-%
-% f:           Input signal of length M
-% alpha:       Degree of the fractional B-spline
-% tau = 0       (default)
-% P1, P2:       Projection filters
-% H, HH:        Lowpass filters on the analysis and synthesis sides
-% G, GG:        Highpass filters on the analysis and synthesis sides
-% w:            Complex wavelet coefficients
-% lowpass:      Coarsest approximation
-%
-% All filtering (convolution) and subsampling operations are performed in  
-% Fourier space; see [2] for implementation details.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-clc; clear all; close all force;
 %% input signal 
 % Failure
 %f_read = load('C:\Users\user\Desktop\data\failure\Velo\Fail1_Velo_Body_CASE_1-B.txt');
