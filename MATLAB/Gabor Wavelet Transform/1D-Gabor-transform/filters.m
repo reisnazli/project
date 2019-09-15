@@ -1,10 +1,5 @@
 function [H, G] = filters(M, alpha, tau, flag)
-%
-% sets up the multiresolution spline filters.
-% H is the lowpass filter, G is the highpass filter
-% flag = 1 (analysis), and = 0 (synthesis)
-%
-%
+
 nu = (0: 1: M - 1) / M;
 p  = 0.5*(alpha+1) - tau;
 q  = 0.5*(alpha+1) + tau;
