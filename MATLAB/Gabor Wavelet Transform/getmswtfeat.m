@@ -1,30 +1,3 @@
-% GETMSWTFEAT Gets the Multiscale Wavelet Transform features, these
-% include: Energy, Variance, Standard Deviation, and Waveform Length
-% feat = getmswtfeat(x,winsize,wininc,SF)
-% ------------------------------------------------------------------
-% The signals in x are divided into multiple windows of size
-% "winsize" and the windows are spaced "wininc" apart.
-% Inputs
-% ------
-%    x: 		columns of signals
-%    winsize:	window size (length of x)
-%    wininc:	spacing of the windows (winsize)
-%    SF:        sampling frequency (Not used in the current implementation, but I left you some options down there)
-% Outputs
-% -------
-%    feat:     WT features organized as [Energy, Variance, Waveform Length, Entropy]
-
-% Example
-% -------
-% feat = getmswtfeat(rand(1024,1),128,32,32)
-% Assuming here rand(1024,1) (this can be any one dimensional signal,
-% for example EEG or EMG) is a one dimensional signal sampled at 32
-% for 32 seconds only. Utilizing a window size of 128 at 32 increments,
-% features are extracted from the wavelet tree.
-% I assumed 10 decomposition levels (J=10) below in the code.
-% For a full tree at 10 levels you should get 11 features
-% as we have decided to extract 4 types of features then we get 11 x 4 =44
-% features.
 function feat = getmswtfeat(x,winsize,wininc,SF)
 
 if nargin < 4
@@ -54,15 +27,8 @@ for i = 1:numwin
     st = st + wininc;
     en = en + wininc;
 end
-%% ---------------- Various options for J -----------------------
-% Note I put SF above in the inputs because you can use SF to determine the
-% best decompisition level J, however for simplicity here I put it J=10;
-J=10;% Number of decomposition levels which can also be set using
-% or J=wmaxlev(winsize,'Sym5');
-% or J=(log(SF/2)/log(2))-1;
-%% Multisignal one-dimensional wavelet transform decomposition
+J=10;% Number of decomposition
 dec = mdwtdec('col',feat,J,'db1');
-% Proceed with Multisignal 1-D decomposition energy distribution
 
 if isequal(dec.dirDec,'c')
     dim = 1;
@@ -84,18 +50,13 @@ percentENER = 0*ones(size(cfs_POW2));
 notZER = (Energy>0);
 percentENER(notZER,:) = 100*cfs_POW2(notZER,:)./Energy(notZER,ones(1,num_CFS_TOT));
 
-%% or try this version below and tell us which  one is the best on your data
-% percentENER(notZER,:) = cfs_POW2(notZER,:);
-
-%% Pre-define and allocate memory
 tab_ENER = zeros(numOfSIGs,level+1);
 tab_VAR = zeros(numOfSIGs,level+1);
 % tab_STD = zeros(numOfSIGs,level+1);
 tab_WL = zeros(numOfSIGs,level+1);
 tab_entropy = zeros(numOfSIGs,level+1);
 
-
-%% Feature extraction section
+%% Feature extraction
 st = 1;
 for k=1:level+1
     nbCFS = longs(k);
