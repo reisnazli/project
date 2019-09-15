@@ -1,9 +1,5 @@
 function displayResults(f, recon, w)
-%
-% display the original and the reconstructed signal, the real and the
-% imaginary components, and also the amplitude and phase of the different 
-% wavelet subbands.
-%
+
 M = length(f);
 J = length(w);
 
