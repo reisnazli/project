@@ -1,0 +1,12 @@
+You are free to use this software for research purposes.  Redistribution
+without the consent of the Biomedical Imaging Group is not permitted.  This
+software is provided "AS IS" and any and all warranties, either express or
+implied, are hereby disclaimed.  In no event shall the EPFL or the developers be liable for any direct, indirect, incidental, special, exemplary, consequential, or other damages arising in any way out of the use of this software.
+
+If you use this software in your research please consider citing 
+the following reference:
+
+[1] K.N. Chaudhury, M. Unser, "Construction of Hilbert Transform Pairs of 
+Wavelet Bases and Gabor-Like Transforms," IEEE Transactions on Signal Processing,  vol. 57, no. 9, pp. 3411-3425, September 2009.
+
+
