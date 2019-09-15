@@ -1,14 +1,12 @@
 function [fitresult, gof] = createFit(ALL_TIME, ALL_TRAIN)
-%% Fit: 'fit2'.
 [xData, yData] = prepareCurveData( ALL_TIME, ALL_TRAIN );
 
-% Set up fittype and options.
 ft = fittype( 'smoothingspline' );
 
 % Fit model to data.
 [fitresult, gof] = fit( xData, yData, ft );
 
-% Create a figure for the plots.
+% Create the plots.
 figure( 'Name', 'fit2' );
 
 % Plot fit with data.
