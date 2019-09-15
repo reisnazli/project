@@ -1,7 +1,5 @@
 function [ f , flag] =  exception(f, J)
-%
-% check and correct for inconsistency.
-%
+
 flag   = 1;
 [p, q] = size(f);
 
