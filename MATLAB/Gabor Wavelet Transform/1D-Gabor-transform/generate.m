@@ -1,8 +1,5 @@
 function  generate ( ~ )
-%
-% generates and plots the real and imaginary components, and the modulus 
-% of the Gabor-like wavelet 
-%
+
 clc, close all force;
 fprintf('Synthesizing the wavelet ...\n');
 
@@ -14,7 +11,6 @@ shift = 1/2;
 J     = 9;
 M     =  len/2^J;
 
-% set up the impulse (Kronecker detla)
 Yh              = cell(J,1);
 for j = 1 : J
     Yh{j} = zeros(1, len/2^j);
@@ -28,7 +24,6 @@ LP2             = 0 * Yh{J};
 [H1, G1] = filters(len, alpha, tau, 1);
 [H2, G2] = filters(len, alpha, tau + shift, 1);
 
-% synthesize the impulse
 for j = J : -1 : 1
 	
     H =  H1(1 : 2^(j-1) : length(H1));
@@ -36,13 +31,13 @@ for j = J : -1 : 1
     HH = H2(1 : 2^(j-1) : length(H2));
 	GG = G2(1 : 2^(j-1) : length(G2));
     
-    % synthesize real part
+    % real part
     Y0  =  H(1:M).*fft(LP1) + G(1:M).*fft(Yh{j});
 	Y1  =  H(M + (1:M)).*fft(LP1) + G(M + (1:M)).*fft(Yh{j});
 	Y   =  [Y0  Y1];
     LP1 =  ifft(Y,2*M);
 
-    % synthesize imaginary part
+    % imaginary part
     Y0  = HH(1:M).*fft(LP2) + GG(1:M).*fft(Yh{j});
 	Y1  = HH(M + (1:M)).*fft(LP2) + GG(M + (1:M)).*fft(Yh{j});
 	Y   = [Y0  Y1];
